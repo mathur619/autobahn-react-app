@@ -45,22 +45,24 @@ const handleActionClick = async (
   id: number,
   handleLoading: (bool: boolean) => void
 ) => {
-  handleLoading(true);
+  if (e?.target?.attributes?.["data-action"]?.value) {
+    handleLoading(true);
 
-  switch (e.target.attributes["data-action"].value) {
-    case ActionTypes.delete: {
-      await handleDeletePost(id);
-      break;
+    switch (e.target.attributes["data-action"].value) {
+      case ActionTypes.delete: {
+        await handleDeletePost(id);
+        break;
+      }
+      case ActionTypes.edit: {
+        await handleEditPost(id);
+        break;
+      }
+      default:
+        console.log("default");
     }
-    case ActionTypes.edit: {
-      await handleEditPost(id);
-      break;
-    }
-    default:
-      console.log("default");
+
+    handleLoading(false);
   }
-
-  handleLoading(false);
 };
 
 const ActionBar: React.FC<IActionBar> = ({ id, handleLoading }) => {
