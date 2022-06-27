@@ -2,6 +2,7 @@ import React from "react";
 import MemoDeleteSVG from "../SVGIcons/DeleteSVG";
 import MemoEditSVG from "../SVGIcons/EditSVG";
 import * as S from "./styles";
+import { toast } from "react-toastify";
 
 export interface IActionBar {
   id: number;
@@ -26,12 +27,11 @@ const handleDeletePost = async (id: number) => {
         `This is an HTTP error: The status is ${response.status}`
       );
     }
-    let actualData = await response.json();
-    console.log("actualData", actualData, response);
-    // setError(null);
+    const actualData = await response.json();
+    toast.success(`Post number - ${id} deleted!`);
   } catch (err) {
     if (err instanceof Error) {
-      // setError(err.message);
+      toast.error(err.message);
     }
   }
 };
