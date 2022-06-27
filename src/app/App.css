@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+@media (min-width: 990px) {
+  .App {
+    width: 60vw;
+    margin-inline: auto;
+    max-width: 1280px;
+  }
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
