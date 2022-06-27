@@ -13,6 +13,7 @@ export const H2 = styled.h2`
   margin: 0;
   letter-spacing: 2px;
   font-size: 1rem;
+  color: black;
 `;
 
 export const Button = styled.button`
