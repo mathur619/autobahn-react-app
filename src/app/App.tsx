@@ -4,10 +4,12 @@ import AppRoutes from "./routes/AppRoutes";
 
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import Navbar from "../components/Navbar/Navbar";
 
 function App() {
   return (
     <div className="App">
+      <Navbar />
       <AppRoutes />
       <ToastContainer
         newestOnTop
