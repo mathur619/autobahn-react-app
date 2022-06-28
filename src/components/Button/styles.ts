@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
-  width: fit-content;
-  padding: 0.5rem 1rem;
+export const Button = styled.button<{ $fullWidth: boolean }>`
+  width: ${(props) => (props.$fullWidth ? "100%" : "fit-content")};
+  padding: 1rem;
   background-color: white;
   border: 1px solid rgb(229, 251, 255, 1);
   background-color: rgb(229, 251, 255, 1);
   border-radius: 4px;
   font-weight: 600;
+  font-size: inherit;
 
   cursor: pointer;
 
