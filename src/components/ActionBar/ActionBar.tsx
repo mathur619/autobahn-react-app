@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 export interface IActionBar {
   id: number;
   handleLoading: (bool: boolean) => void;
+  handleShowUpdateOverlay: (bool: boolean) => void;
 }
 
 enum ActionTypes {
@@ -36,14 +37,19 @@ const handleDeletePost = async (id: number) => {
   }
 };
 
-const handleEditPost = async (id: number) => {
+const handleEditPost = async (
+  id: number,
+  handleShowUpdateOverlay: (bool: boolean) => void
+) => {
   console.log(id);
+  handleShowUpdateOverlay(true);
 };
 
 const handleActionClick = async (
   e: any,
   id: number,
-  handleLoading: (bool: boolean) => void
+  handleLoading: (bool: boolean) => void,
+  handleShowUpdateOverlay: (bool: boolean) => void
 ) => {
   if (e?.target?.attributes?.["data-action"]?.value) {
     handleLoading(true);
@@ -54,7 +60,7 @@ const handleActionClick = async (
         break;
       }
       case ActionTypes.edit: {
-        await handleEditPost(id);
+        await handleEditPost(id, handleShowUpdateOverlay);
         break;
       }
       default:
@@ -65,10 +71,16 @@ const handleActionClick = async (
   }
 };
 
-const ActionBar: React.FC<IActionBar> = ({ id, handleLoading }) => {
+const ActionBar: React.FC<IActionBar> = ({
+  id,
+  handleLoading,
+  handleShowUpdateOverlay,
+}) => {
   return (
     <S.ActionBarContainer
-      onClick={(e) => handleActionClick(e, id, handleLoading)}
+      onClick={(e) =>
+        handleActionClick(e, id, handleLoading, handleShowUpdateOverlay)
+      }
     >
       <MemoDeleteSVG data-action={ActionTypes.delete} fontSize="1.5rem" />
       <MemoEditSVG data-action={ActionTypes.edit} fontSize="1.5rem" />

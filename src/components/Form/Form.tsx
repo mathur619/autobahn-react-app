@@ -12,14 +12,15 @@ export enum FormActionTypes {
   RESET = "reset",
 }
 
-enum FormNames {
+export enum FormNames {
   TITLE = "title",
   BODY = "body",
+  ID = "id",
 }
 
 export interface IFormInput {
   name: FormNames;
-  value: string;
+  value: string | number;
   touched: boolean;
   hasError: boolean;
   error: string;
@@ -185,10 +186,49 @@ const formReducer = (
       return createInitialState;
     }
     case FormActionTypes.UPDATE: {
+      if (state.isFormValid) {
+        const updatePost = async () => {
+          console.count("updatePost");
+          try {
+            const response = await fetch(
+              `https://jsonplaceholder.typicode.com/posts/${state.id?.value}`,
+              {
+                method: "PUT",
+                body: JSON.stringify({
+                  id: state.id?.value,
+                  title: state.title.value,
+                  body: state.body.value,
+                  userId: 1,
+                }),
+                headers: {
+                  "Content-type": "application/json; charset=UTF-8",
+                },
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error(
+                `This is an HTTP error: The status is ${response.status}`
+              );
+            }
+            let actualData = await response.json();
+            toast.success(`Post ${state.id?.value} Updated!`);
+          } catch (err) {
+            if (err instanceof Error) {
+              toast.error(err.message);
+            }
+          } finally {
+            // setLoading(false);
+          }
+        };
+        updatePost();
+      }
+
+      console.log("update");
       return state;
     }
     case FormActionTypes.RESET: {
-      return state;
+      return createInitialState;
     }
     default: {
       return state;
@@ -207,8 +247,8 @@ const handleSubmit = (
     dispatch({
       type: FormActionTypes.INPUT_CHANGE,
       payload: {
-        value: formState[name as FormNames].value,
-        name: formState[name as FormNames].name,
+        value: formState[name as FormNames]?.value,
+        name: formState[name as FormNames]?.name,
       },
     });
   }
