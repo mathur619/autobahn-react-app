@@ -1,6 +1,10 @@
 import React, { useCallback, useState } from "react";
 import ActionBar from "../ActionBar/ActionBar";
-import { FormActionTypes, FormNames, IFormInitialState } from "../Form/Form";
+import {
+  IFormInitialState,
+  FormNames,
+  FormActionTypes,
+} from "../Form/formUtils";
 import PostUpdateOverlay from "../PostUpdateOverlay/PostUpdateOverlay";
 import * as S from "./styles";
 

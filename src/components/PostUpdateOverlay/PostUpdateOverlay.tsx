@@ -1,5 +1,6 @@
 import React from "react";
-import Form, { IFormInitialState } from "../Form/Form";
+import Form from "../Form/Form";
+import { IFormInitialState } from "../Form/formUtils";
 import MemoCloseSVG from "../SVGIcons/CloseSVG";
 import * as S from "./styles";
 

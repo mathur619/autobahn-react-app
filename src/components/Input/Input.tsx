@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { IFormInput } from "../Form/Form";
+import { IFormInput } from "../Form/formUtils";
+
 import * as S from "./styles";
 
 interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {

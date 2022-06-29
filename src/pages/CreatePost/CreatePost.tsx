@@ -1,5 +1,5 @@
 import React from "react";
-import Form, { IFormInitialState } from "../../components/Form/Form";
+import Form from "../../components/Form/Form";
 import * as S from "./styles";
 
 function CreatePost() {
