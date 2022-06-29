@@ -219,7 +219,6 @@ export const formReducer = (
         updatePost();
       }
 
-      console.log("update");
       return state;
     }
     case FormActionTypes.RESET: {

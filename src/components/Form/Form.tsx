@@ -17,8 +17,6 @@ const Form: React.FC<IForm> = ({ initialState }) => {
     initialState || createInitialState
   );
 
-  console.log("formState", formState);
-
   return (
     <>
       <S.Form onSubmit={(e) => handleSubmit(e, formState, dispatch)}>

@@ -41,7 +41,6 @@ const handleEditPost = async (
   id: number,
   handleShowUpdateOverlay: (bool: boolean) => void
 ) => {
-  console.log(id);
   handleShowUpdateOverlay(true);
 };
 
